@@ -50,4 +50,8 @@ public class DecisionNode extends Node<Double>{
     public Double getValue() {
         return super.getItem();
     }
+
+    public String toString(){
+        return getValue() + " " + getIndex();
+    }
 }

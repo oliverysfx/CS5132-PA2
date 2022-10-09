@@ -1,11 +1,21 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
 
 public class DecisionTree {
     DecisionNode root;
 
     public DecisionTree(){}
+
+    /**
+     * Constructor for reading from file
+     * @param node root node
+     */
+    private DecisionTree(DecisionNode node){
+        root = node;
+    }
+
     /**
      * Builds a decision tree from a dataset with max depth of 3 and min size of 0
      * @param dataset dataset to be trained on
@@ -155,5 +165,81 @@ public class DecisionTree {
             return node.getValue();
         }
         return predict(features, node.neighbours[node.predict(features)]);
+    }
+
+    /**
+     * writes the trained decision tree to a file
+     * @param path path to write to
+     */
+    public void save(String path){
+        try(FileWriter out = new FileWriter(path)){
+            out.write(String.join(",", preOrder(root, new ArrayList<>())));
+            out.write(System.getProperty("line.separator"));
+            out.write(String.join(",", inOrder(root, new ArrayList<>())));
+        } catch (IOException e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * read in an already trained decision tree from a path
+     * @param path path to read file from
+     * @return constructed decision tree
+     */
+    public static DecisionTree read(String path){
+        try(Scanner in = new Scanner(new File(path))){
+            String line1 = in.nextLine();
+            return construct(new ArrayList<>(List.of(line1.split(","))),
+                    new ArrayList<>(List.of(in.nextLine().split(","))));
+        } catch (IOException e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * recursive method to construct a trained decision tree from pre-order and in-order traversal
+     * @param preOrder pre-order traversal of the trained tree
+     * @param inOrder in-order traversal of the trained tree
+     * @return trained decison tree
+     */
+    private static DecisionTree construct(ArrayList<String> preOrder, ArrayList<String> inOrder){
+        if(preOrder.size() == 0) return new DecisionTree();
+        DecisionTree tree = new DecisionTree(new DecisionNode(Double.parseDouble(preOrder.get(0).split(" ")[0]), Integer.parseInt(preOrder.get(0).split(" ")[1])));
+        ArrayList<String> leftInOrder = new ArrayList<>(inOrder.subList(0, inOrder.indexOf(preOrder.get(0))));
+        ArrayList<String> rightInOrder = new ArrayList<>(inOrder.subList(inOrder.indexOf(preOrder.get(0)) + 1, inOrder.size()));
+        ArrayList<String> leftPreOrder = new ArrayList<>(preOrder.subList(1, leftInOrder.size() + 1));
+        ArrayList<String> rightPreOrder = new ArrayList<>(preOrder.subList(leftInOrder.size() + 1, inOrder.size()));
+        tree.root.neighbours[0] = construct(leftPreOrder, leftInOrder).root;
+        tree.root.neighbours[1] = construct(rightPreOrder, rightInOrder).root;
+        return tree;
+    }
+
+    /**
+     * Generates in-order traversal of the decision tree
+     * @return in-order traversal of the decision tree
+     */
+    private ArrayList<String> inOrder(DecisionNode curr, ArrayList<String> result){
+        if(curr.neighbours[0] != null){
+            inOrder(curr.neighbours[0], result);
+        }
+        result.add(curr.toString());
+        if(curr.neighbours[1] != null){
+            inOrder(curr.neighbours[1], result);
+        }
+        return result;
+    }
+    /**
+     * Generates pre-order traversal of the decision tree
+     * @return pre-order traversal of the decision tree
+     */
+    private ArrayList<String> preOrder(DecisionNode curr, ArrayList<String> result){
+        result.add(curr.toString());
+        if(curr.neighbours[0] != null){
+            preOrder(curr.neighbours[0], result);
+        }
+        if(curr.neighbours[1] != null){
+            preOrder(curr.neighbours[1], result);
+        }
+        return result;
     }
 }
