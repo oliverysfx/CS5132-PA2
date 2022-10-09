@@ -24,11 +24,20 @@ public class DecisionNode extends Node<Double>{
         this.index = index;
     }
 
+    /**
+     * Create clone of another DecisionNode
+     * @param n the node to be cloned
+     */
     public DecisionNode(DecisionNode n) {
         super(n);
         this.index = n.index;
     }
 
+    /**
+     * Make a decision
+     * @param dataset dataset to be split
+     * @return An array of two arrayLists containing split data
+     */
     public ArrayList<double[]>[] decide(ArrayList<double[]> dataset){
         ArrayList<double[]>[] output = new ArrayList[2];
         output[0] = new ArrayList<>();
