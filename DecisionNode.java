@@ -25,13 +25,22 @@ public class DecisionNode extends Node<Double>{
         output[0] = new ArrayList<>();
         output[1] = new ArrayList<>();
         for(double[] data : dataset){
-            if(data[data.length-1] < getItem()){
+            if(data[index] < getItem()){
                 output[0].add(data);
                 continue;
             }
             output[1].add(data);
         }
         return output;
+    }
+
+    /**
+     * choose to go to left child or right child
+     * @param features features being used to predict
+     * @return value representing left child or right child
+     */
+    public int predict(double[] features){
+        return features[index] < getItem() ? 0 : 1;
     }
 
     public int getIndex() {

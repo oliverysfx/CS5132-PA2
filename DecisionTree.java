@@ -45,11 +45,13 @@ public class DecisionTree {
     private void build(DecisionNode root, ArrayList<double[]> dataset, int max_depth, int min_size, int depth){
         ArrayList<double[]>[] split = root.decide(dataset);
         if(split[0].size() == 0){
+            root.neighbours[1] = new DecisionNode(getValue(split[1]), -1);
             root.neighbours[0] = new DecisionNode(getValue(split[0]), -1);
             return;
         }
         if(split[1].size() == 0){
-            root.neighbours[1] = new DecisionNode(getValue(split[1]), -1);
+            root.neighbours[0] = new DecisionNode(getValue(split[0]), -1);
+            root.neighbours[1] = new DecisionNode(getValue(split[0]), -1);
             return;
         }
         if(depth >= max_depth){
@@ -88,7 +90,7 @@ public class DecisionTree {
         for(int i = 0; i < temp.length; i++){
             classes[i] = temp[i];
         }
-        for(int i = 0; i < dataset.get(0).length; i++){
+        for(int i = 0; i < dataset.get(0).length - 1; i++){
             for(double[] data : dataset){
                 DecisionNode test = new DecisionNode(data[i], i);
                 ArrayList<double[]>[] split = test.decide(dataset);
@@ -128,5 +130,30 @@ public class DecisionTree {
             }
         }
         return value;
+    }
+
+    /**
+     * predict a class based on features
+     * @param features features being predicted using
+     * @return predicted class
+     */
+    public double predict(double[] features){
+        if(root == null){
+            throw new IllegalArgumentException("Why? Just, why?");
+        }
+        return predict(features, root);
+    }
+
+    /**
+     * recursive function to predict a class
+     * @param features features being predicted using
+     * @param node current decision node
+     * @return predicted class
+     */
+    private double predict(double[] features, DecisionNode node){
+        if(node.getIndex() == -1){
+            return node.getValue();
+        }
+        return predict(features, node.neighbours[node.predict(features)]);
     }
 }

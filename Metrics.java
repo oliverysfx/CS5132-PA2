@@ -19,7 +19,7 @@ public class Metrics{
                 p += data[data.length-1] == class_val ? 1 : 0;
             }
             p /= size;
-            score += p * p;
+            score += p * (1-p);
         }
         return score;
     }
