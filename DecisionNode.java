@@ -12,6 +12,7 @@ public class DecisionNode extends Node<Double>{
     public DecisionNode(double value, int index) {
         super(value, 2);
         this.index = index;
+        neighbours = new DecisionNode[2];
     }
 
     /**
