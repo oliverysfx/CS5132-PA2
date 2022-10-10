@@ -50,16 +50,17 @@ public class Training {
         in.close();
 
         DecisionTree clf = new DecisionTree();
-        clf.build(train);
+        clf.build(train, 13);
 
         ArrayList<String> y_pred = new ArrayList<>();
 
         for (int i = 0 ; i < x_test.size(); i++){
             y_pred.add(abbr.get((int) clf.predict(x_test.get(i))));
-            System.out.println(abbr.get((int) clf.predict(x_test.get(i))));
-            System.out.println(y_test.get(i));
+            System.out.println("Pred: " + abbr.get((int) clf.predict(x_test.get(i))));
+            System.out.println("True: " + y_test.get(i));
         }
         System.out.println(accuracy(y_test, y_pred));
+        clf.save("saved_tree.txt");
     }
 
     public static double accuracy(ArrayList y_true, ArrayList y_pred){
