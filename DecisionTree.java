@@ -108,7 +108,7 @@ public class DecisionTree {
                 ArrayList<double[]>[] split = test.decide(dataset);
                 double score = (Metrics.gini(split[0], classes) * split[0].size() +
                         Metrics.gini(split[1], classes) * split[1].size())/ dataset.size();
-                System.out.println(score + " " + bestScore);
+//                System.out.println(score + " " + bestScore);
                 if(score < bestScore){
                     bestScore = score;
                     bestNode = test;

@@ -2,10 +2,7 @@ import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Training {
     private static final double TEST_SIZE = 0.2;
@@ -29,7 +26,7 @@ public class Training {
 
         ArrayList<double[]> train = new ArrayList<>();
         ArrayList<double[]> x_test = new ArrayList<>();
-        ArrayList<Double> y_test = new ArrayList<>();
+        ArrayList<String> y_test = new ArrayList<>();
 
         double[] x = new double[NUM_FEATURES + 1];
         String[] split;
@@ -45,7 +42,7 @@ public class Training {
 
             if (rng.nextDouble() < TEST_SIZE) {
                 x_test.add(Arrays.copyOf(x, NUM_FEATURES));
-                y_test.add((double) abbr.indexOf(split[NUM_FEATURES + 1]));
+                y_test.add((split[NUM_FEATURES + 1]));
             } else {
                 train.add(Arrays.copyOf(x, NUM_FEATURES + 1));
             }
@@ -55,10 +52,24 @@ public class Training {
         DecisionTree clf = new DecisionTree();
         clf.build(train);
 
-        ArrayList<Double> y_pred = new ArrayList<>();
+        ArrayList<String> y_pred = new ArrayList<>();
 
-        for (double[] e: x_test){
-            System.out.println(abbr.get((int) clf.predict(e)));
+        for (int i = 0 ; i < x_test.size(); i++){
+            y_pred.add(abbr.get((int) clf.predict(x_test.get(i))));
+            System.out.println(abbr.get((int) clf.predict(x_test.get(i))));
+            System.out.println(y_test.get(i));
         }
+        System.out.println(accuracy(y_test, y_pred));
+    }
+
+    public static double accuracy(ArrayList y_true, ArrayList y_pred){
+        int correct = 0;
+
+        for (int i = 0; i < y_true.size(); i++){
+            if (y_true.get(i).equals(y_pred.get(i))){
+                correct ++;
+            }
+        }
+        return (double) correct / y_true.size();
     }
 }
