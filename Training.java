@@ -54,16 +54,26 @@ public class Training {
 
         ArrayList<String> y_pred = new ArrayList<>();
 
-        for (int i = 0 ; i < x_test.size(); i++){
-            y_pred.add(abbr.get((int) clf.predict(x_test.get(i))));
-            System.out.println("Pred: " + abbr.get((int) clf.predict(x_test.get(i))));
-            System.out.println("True: " + y_test.get(i));
+        for (double[] doubles : x_test) {
+            y_pred.add(abbr.get((int) clf.predict(doubles)));
+//            System.out.println("Pred: " + abbr.get((int) clf.predict(x_test.get(i))));
+//            System.out.println("True: " + y_test.get(i));
         }
-        System.out.println(accuracy(y_test, y_pred));
+        System.out.println("Accuracy: " + accuracy(y_test, y_pred));
+
+        System.out.println("\nConfusion Matrix:");
+        System.out.println(y_test.stream().distinct().toList());
+
+        int[][] matrix = confusion_matrix(y_test, y_pred);
+
+        for (int[] e: matrix){
+            System.out.println(Arrays.toString(e));
+        }
+
         clf.save("saved_tree.txt");
     }
 
-    public static double accuracy(ArrayList y_true, ArrayList y_pred){
+    public static double accuracy(ArrayList<String> y_true, ArrayList<String> y_pred){
         int correct = 0;
 
         for (int i = 0; i < y_true.size(); i++){
@@ -72,5 +82,18 @@ public class Training {
             }
         }
         return (double) correct / y_true.size();
+    }
+
+    public static int[][] confusion_matrix(ArrayList<String> y_true, ArrayList<String> y_pred){
+        List<String> unique = y_true.stream().distinct().toList();
+        int[][] result = new int[unique.size()][unique.size()];
+
+        int j, k;
+        for (int i = 0; i < y_true.size(); i ++){
+            j = unique.indexOf(y_true.get(i));
+            k = unique.indexOf(y_pred.get(i));
+            result[j][k]++;
+        }
+        return result;
     }
 }
