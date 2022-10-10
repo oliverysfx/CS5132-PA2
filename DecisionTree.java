@@ -1,3 +1,5 @@
+import org.w3c.dom.CDATASection;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -56,7 +58,7 @@ public class DecisionTree {
         ArrayList<double[]>[] split = root.decide(dataset);
         if(split[0].size() == 0){
             root.neighbours[1] = new DecisionNode(getValue(split[1]), -1);
-            root.neighbours[0] = new DecisionNode(getValue(split[0]), -1);
+            root.neighbours[0] = new DecisionNode(getValue(split[1]), -1);
             return;
         }
         if(split[1].size() == 0){
@@ -105,7 +107,8 @@ public class DecisionTree {
                 DecisionNode test = new DecisionNode(data[i], i);
                 ArrayList<double[]>[] split = test.decide(dataset);
                 double score = (Metrics.gini(split[0], classes) * split[0].size() +
-                        Metrics.gini(split[1], classes) * split[1].size())/data.length;
+                        Metrics.gini(split[1], classes) * split[1].size())/ dataset.size();
+                System.out.println(score + " " + bestScore);
                 if(score < bestScore){
                     bestScore = score;
                     bestNode = test;
