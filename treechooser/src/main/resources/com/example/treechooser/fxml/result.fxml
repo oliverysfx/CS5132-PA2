@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="778.0" prefWidth="1200.0" style="-fx-background-color: #1f1f1f;" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.treechooser.controllers.ResultController">
+   <children>
+      <ImageView fitWidth="260.0" layoutX="312.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="42.0">
+         <image>
+            <Image url="@../images/trees_result.png" />
+         </image>
+      </ImageView>
+      <VBox prefWidth="330.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="240.0">
+         <children>
+            <Text fill="#3b7427" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 40px;" text="Tree chosen">
+               <VBox.margin>
+                  <Insets bottom="8.0" />
+               </VBox.margin>
+            </Text>
+            <Text fx:id="speciesNameText" fill="WHITE" layoutX="10.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 40px;" text="Cedar">
+               <VBox.margin>
+                  <Insets bottom="40.0" />
+               </VBox.margin>
+            </Text>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16px;" text="After careful consideration of all the variables provided, we have crunched the numbers and suggest that this species of tree is most suited for your environment." wrappingWidth="330.0" />
+         </children>
+      </VBox>
+      <ImageView fitWidth="90.0" layoutX="1014.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="118.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../images/leaves.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
