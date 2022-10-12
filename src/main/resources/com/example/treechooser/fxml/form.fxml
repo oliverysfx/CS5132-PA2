@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <HBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="778.0" prefWidth="1200.0" style="-fx-background-color: #1f1f1f;" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.treechooser.controllers.FormController">
    <children>
@@ -94,7 +88,7 @@
                                     <Insets bottom="48.0" />
                                  </VBox.margin>
                               </TextField>
-                              <Text fill="#3b7327cc" layoutX="10.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Relative humidity">
+                              <Text fill="#3b7327cc" layoutX="10.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Relative humidity (0.01%)">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
@@ -114,7 +108,7 @@
                         </VBox>
                         <VBox layoutX="10.0" layoutY="10.0" prefWidth="280.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <Text fill="#3b7327cc" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Mean temperature (°C)">
+                              <Text fill="#3b7327cc" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Mean temperature (0.1°C)">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
@@ -124,7 +118,7 @@
                                     <Insets bottom="48.0" />
                                  </VBox.margin>
                               </TextField>
-                              <Text fill="#3b7327cc" layoutX="10.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Min temperature (°C)">
+                              <Text fill="#3b7327cc" layoutX="10.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Min temperature (0.1°C)">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
@@ -134,7 +128,7 @@
                                     <Insets bottom="48.0" />
                                  </VBox.margin>
                               </TextField>
-                              <Text fill="#3b7327cc" layoutX="10.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Max temperature (°C)">
+                              <Text fill="#3b7327cc" layoutX="10.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Max temperature (0.1°C)">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
@@ -144,7 +138,7 @@
                                     <Insets bottom="48.0" />
                                  </VBox.margin>
                               </TextField>
-                              <Text fill="#3b7327cc" layoutX="10.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Number of hot days">
+                              <Text fill="#3b7327cc" layoutX="10.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Growing degree days">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
@@ -154,7 +148,7 @@
                                     <Insets bottom="48.0" />
                                  </VBox.margin>
                               </TextField>
-                              <Text fill="#3b7327cc" layoutX="10.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Number of cold days">
+                              <Text fill="#3b7327cc" layoutX="10.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Number of frost days">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
