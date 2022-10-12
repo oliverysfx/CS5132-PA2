@@ -1,5 +1,5 @@
 # CS5132-PA2
-Yay this is going to be great
+PA2 done by Su Zhengchong, Lee Jia Jie and Qiu Ziming
 
 # Instructions
 After opening the project, IntelliJ should show a prompt to 'load Maven project'
