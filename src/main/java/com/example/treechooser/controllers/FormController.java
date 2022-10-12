@@ -10,6 +10,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Window;
 import javafx.util.Pair;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class FormController implements Controller {
     @FXML
     private TextField soilDepthField;
@@ -118,7 +121,7 @@ public class FormController implements Controller {
                 humidity,
                 availableSolarRadiation,
             });
-            String chosenSpecies = SPECIES[(int)Math.round(result)];
+            String chosenSpecies = SPECIES[(int)result];
             Router.instance.push("fxml/result.fxml", chosenSpecies);
         } catch (NumberFormatException e) {
             new Alert(Alert.AlertType.ERROR, "Invalid value(s) detected. You can only enter numbers for the fields").show();

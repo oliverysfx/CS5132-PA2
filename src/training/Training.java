@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -36,7 +35,7 @@ public class Training {
         while ((line = in.readLine()) != null) {  // file ends with a blank line
             split = line.split(",");
             for (int i = 1; i < NUM_FEATURES + 1; i++) {
-                x[i] = Double.parseDouble(split[i]);
+                x[i - 1] = Double.parseDouble(split[i]);
             }
             x[NUM_FEATURES] = abbr.indexOf(split[NUM_FEATURES + 1]);
 
@@ -56,10 +55,12 @@ public class Training {
 
         for (double[] doubles : x_test) {
             y_pred.add(abbr.get((int) clf.predict(doubles)));
+//            System.out.println(Arrays.toString(doubles));
 //            System.out.println("Pred: " + abbr.get((int) clf.predict(x_test.get(i))));
 //            System.out.println("True: " + y_test.get(i));
         }
         System.out.println("Accuracy: " + accuracy(y_test, y_pred));
+        System.out.println(clf.predict(new double[]{48.0,3.0,1001.278167,15.75474037,63.08879431,213.1012925,-79.56969632,1436.496209,161.376295,6094.300025,4448594.686}));
 
         System.out.println("\nConfusion Matrix:");
         System.out.println(y_test.stream().distinct().toList());
