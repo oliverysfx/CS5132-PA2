@@ -6,7 +6,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="778.0" prefWidth="1200.0" style="-fx-background-color: #1f1f1f;" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.treechooser.controllers.FormController">
+<HBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="778.0" prefWidth="1200.0" style="-fx-background-color: #1f1f1f;" stylesheets="@../styles/main.css"
+   xmlns="http://javafx.com/javafx/19"
+   xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.treechooser.controllers.FormController">
    <children>
       <ImageView fitWidth="164.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -20,11 +22,24 @@
          <content>
             <VBox prefWidth="630.0">
                <children>
-                  <Text fill="#3b7427" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 32px;" text="Tell us a bit about the environment">
+                  <HBox alignment="CENTER_LEFT">
+                     <children>
+                        <Text fill="#3b7427" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 32px;" text="Tell us a bit about the environment">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Text>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <ImageView fitHeight="24.0" fitWidth="24.0" onMouseClicked="#showInputExplanations" pickOnBounds="true" preserveRatio="true" styleClass="info-icon">
+                           <image>
+                              <Image url="@../images/info_icon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
                      <VBox.margin>
                         <Insets bottom="80.0" />
                      </VBox.margin>
-                  </Text>
+                  </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="70.0">
                      <children>
                         <VBox prefWidth="280.0" HBox.hgrow="ALWAYS">
@@ -138,7 +153,7 @@
                                     <Insets bottom="48.0" />
                                  </VBox.margin>
                               </TextField>
-                              <Text fill="#3b7327cc" layoutX="10.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Growing degree days">
+                              <Text fill="#3b7327cc" layoutX="10.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Growing degree days (gdd)">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
@@ -148,7 +163,7 @@
                                     <Insets bottom="48.0" />
                                  </VBox.margin>
                               </TextField>
-                              <Text fill="#3b7327cc" layoutX="10.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Number of frost days">
+                              <Text fill="#3b7327cc" layoutX="10.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 16px;" text="Number of frost days (nfd)">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
@@ -156,7 +171,8 @@
                               <TextField fx:id="numColdDaysField" layoutX="10.0" layoutY="41.0">
                                  <VBox.margin>
                                     <Insets bottom="70.0" />
-                                 </VBox.margin></TextField>
+                                 </VBox.margin>
+                              </TextField>
                               <Button mnemonicParsing="false" onAction="#suggestTree" text="Suggest a tree" />
                            </children>
                         </VBox>

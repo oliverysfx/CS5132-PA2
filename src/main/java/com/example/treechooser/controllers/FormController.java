@@ -3,12 +3,12 @@ package com.example.treechooser.controllers;
 import com.example.treechooser.Router;
 import com.example.treechooser.decisiontree.DecisionTree;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import javafx.stage.Window;
+import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -67,11 +67,29 @@ public class FormController implements Controller {
         });
     }
 
+    public void showInputExplanations() {
+        Dialog dialog = new Dialog<>();
+
+        // javafx doesnt work
+        Window window = dialog.getDialogPane().getScene().getWindow();
+        window.setOnCloseRequest(event -> window.hide());
+
+        dialog.setTitle("Input explanations");
+        dialog.setHeaderText("Brief explanations some of the more confusing fields");
+        Label label = new Label("rock cover (1: none, 2: little (5-20%), 3: low (20-40%), 4: medium (40-60%), 5: high (60-80%), 6: very high(80-95%), 7: full cover (>95%)),\n\ngrowing degree days = (number of days) * (degrees above 0°C). If there are 2 days at 20°C each, growing degree days = 40gdd. 1 day at -5°C = 0gdd\n\nSimilarly, number of frost days = (number of days) * (degrees below 0°)");
+        label.setPrefWidth(400);
+        label.setPrefHeight(200);
+        label.setWrapText(true);
+        dialog.getDialogPane().setContent(label);
+        dialog.getDialogPane().getButtonTypes().addAll(new ButtonType("Understood", ButtonBar.ButtonData.OK_DONE));
+        dialog.show();
+    }
+
     private final String[] SPECIES = {
-            "European Silver Fir (Abies Alba)", "Silver Birch (Betula Pendula)", "European Beech (Fagus Sylvatica)",
-            "Norway Spruce (Picea Abies)", "Swiss Pine (Pinus Cembra)", "Aleppo Pine (Pinus Halenpensis)",
-            "Austrian Pine (Pinus Nigra)", "Black Poplar (Populus Nigra)", "Maritime Pine (Pinus Pinaster)",
-            "Scots Pine (Pinus Sylvetris)", "Sessile Oak (Quercus Petraea)", "English Yew (Taxus Baccata)"
+        "European Silver Fir", "Silver Birch", "European Beech",
+        "Norway Spruce", "Swiss Pine", "Aleppo Pine",
+        "Austrian Pine", "Black Poplar", "Maritime Pine",
+        "Scots Pine", "Sessile Oak", "English Yew"
     };
 
     @FXML
