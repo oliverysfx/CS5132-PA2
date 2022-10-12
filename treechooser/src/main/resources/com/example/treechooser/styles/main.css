@@ -41,6 +41,10 @@
     -fx-background-radius: 8px;
 }
 
+.text-field:focused {
+    -fx-background-color: #333333;
+}
+
 .slider .track {
     -fx-background-color: #2a2a2a;
     -fx-pref-height: 6px;
@@ -57,4 +61,12 @@
 
 .slider .thumb:pressed {
     -fx-cursor: closed-hand;
+}
+
+.info-icon {
+    -fx-cursor: hand;
+}
+
+.info-icon:pressed {
+    -fx-opacity: 0.8;
 }
